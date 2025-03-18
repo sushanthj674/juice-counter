@@ -1,3 +1,9 @@
+const fruits = () => ({
+  apple: {
+    quantity: 10,
+  },
+});
+
 class Vendor {
   #avaliableInventory;
   #orders = [];
@@ -9,6 +15,7 @@ class Vendor {
     return this.#avaliableInventory[juiceName].quantity;
   }
 
+  get inventory() {
   get inventory() {
     return { ...this.#avaliableInventory };
   }
@@ -31,4 +38,17 @@ class Vendor {
     // [frt, qnty]
     Object.entries(order.ordered).forEach(this.#reduceQuantityOf);
   }
+
+  get ordersPlaced() {
+    return this.#orders;
+  }
 }
+
+function main() {
+  const fruitVendor = new Vendor(fruits());
+  fruitVendor.placeOrder();
+  fruitVendor.ordersPlaced;
+  fruitVendor.inventory;
+}
+
+main();
