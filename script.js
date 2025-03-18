@@ -9,10 +9,15 @@ class Vendor {
     return this.#avaliableInventory[juiceName].quantity;
   }
 
-  inventory() {
+  get inventory() {
     return { ...this.#avaliableInventory };
   }
-  reduceQuantityOf(itemName, quantity) {}
+
+  #reduceQuantityOf(itemOrder) {
+    const [itemName, quantity] = itemOrder;
+    this.#avaliableInventory[itemName].quantity -= quantity;
+  }
+
   placeOrder(order) {
     /* {
       ordered:{
@@ -24,6 +29,6 @@ class Vendor {
     }*/
     this.#orders.push({ ...order });
     // [frt, qnty]
-    Object.entries(order.ordered).forEach(reduceQuantityOf);
+    Object.entries(order.ordered).forEach(this.#reduceQuantityOf);
   }
 }
