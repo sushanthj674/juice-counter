@@ -16,7 +16,6 @@ class Vendor {
   }
 
   get inventory() {
-  get inventory() {
     return { ...this.#avaliableInventory };
   }
 
