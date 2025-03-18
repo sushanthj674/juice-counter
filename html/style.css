@@ -1,0 +1,110 @@
+* {
+  padding: 0%;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: cursive;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+header h1 {
+  font-size: 64px;
+  line-height: 1.4;
+  letter-spacing: 0.039em;
+  font-weight: 700;
+  font-style: normal;
+}
+main {
+  margin-left: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.card img {
+  width: 250px;
+  height: 300px;
+}
+.card {
+  margin-top: 50px;
+  width: 450px;
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: baseline;
+  text-transform: capitalize;
+  gap: 30px;
+}
+.card button {
+  text-transform: capitalize;
+  width: 2em;
+  height: 1.8em;
+}
+.quantityBlock {
+  width: 150px;
+  border: 0.4px solid rgb(40, 38, 38);
+  height: 30px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.quantityBlock button {
+  align-self: center;
+}
+.acknowledge {
+  top: 50px;
+  height: 300px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  display: none;
+}
+.ack {
+  text-align: center;
+  font-size: 1.813em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  width: 34%;
+  background-color: ghostwhite;
+  box-shadow: 0px 0px 100px black;
+}
+.cart {
+  position: fixed;
+  left: 67vw;
+  top: 73vh;
+}
+
+#submit {
+  border-radius: 5px;
+  height: 3em;
+  width: 7em;
+}
+.cart-iteams {
+  text-transform: capitalize;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.cart {
+  background-color: aliceblue;
+  height: 200px;
+  width: 30%;
+  display: flex;
+  gap: 10px;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: flex-start;
+}
+.cart-iteams p {
+  font-size: 20px;
+}
+#submit {
+  text-transform: capitalize;
+  font-size: 1.3em;
+}
