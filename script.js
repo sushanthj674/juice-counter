@@ -27,7 +27,7 @@ class Vendor {
   }
 
   requestOrder(order) {
-    this.#orders.push({ ...order });
+    this.#orders.push({ ...order, time: Date.now() });
     for (const [itemName, quantity] of Object.entries(order.order)) {
       this.#reduceQuantityOf(itemName, quantity);
     }
@@ -55,7 +55,7 @@ class Customer {
 
     if (!response) return false;
 
-    this.#myOrders.push({ ...order });
+    this.#myOrders.push({ ...order, time: Date.now() });
     return true;
   }
 }
@@ -74,7 +74,7 @@ class Customer {
 //   console.log("available items ", vendor.inventory);
 //   console.log("ordersplaced:", vendor.ordersPlaced);
 //   console.log('siddha orders' ,customer2.getOrders);
-  
+
 // };
 
 // main();
