@@ -5,49 +5,32 @@ const fruits = () => ({
 });
 
 class Vendor {
-  #avaliableInventory;
+  #availableInventory;
   #orders = [];
   constructor(inventory) {
-    this.#avaliableInventory = { ...inventory };
+    this.#availableInventory = { ...inventory };
   }
 
-  avaliableQuatityOf(juiceName) {
-    return this.#avaliableInventory[juiceName].quantity;
+  availableQuantityOf(juiceName) {
+    return this.#availableInventory[juiceName].quantity;
   }
 
   get inventory() {
-    return { ...this.#avaliableInventory };
+    return { ...this.#availableInventory };
   }
 
-  #reduceQuantityOf(itemOrder) {
-    const [itemName, quantity] = itemOrder;
-    this.#avaliableInventory[itemName].quantity -= quantity;
+  #reduceQuantityOf(itemName, quantity) {
+    this.#availableInventory[itemName].quantity -= quantity;
   }
 
   placeOrder(order) {
-    /* {
-      ordered:{
-        fruit:quantity,
-        fruit:quantity,
-        fruit:quantity,
-      },
-      orderedBy :'name'
-    }*/
     this.#orders.push({ ...order });
-    // [frt, qnty]
-    Object.entries(order.ordered).forEach(this.#reduceQuantityOf);
+    for (const [itemName, quantity] of Object.entries(order.ordered)) {
+      this.#reduceQuantityOf(itemName, quantity);
+    }
   }
 
   get ordersPlaced() {
     return this.#orders;
   }
 }
-
-function main() {
-  const fruitVendor = new Vendor(fruits());
-  fruitVendor.placeOrder();
-  fruitVendor.ordersPlaced;
-  fruitVendor.inventory;
-}
-
-main();
