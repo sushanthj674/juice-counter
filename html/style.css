@@ -76,8 +76,8 @@ main {
 }
 .cart {
   position: fixed;
-  left: 67vw;
-  top: 73vh;
+  left: 80vw;
+  top: 80vh;
 }
 
 #submit {
@@ -107,4 +107,8 @@ main {
 #submit {
   text-transform: capitalize;
   font-size: 1.3em;
+}
+button {
+  border-radius: 5px;
+  border: 0;
 }

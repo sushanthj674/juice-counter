@@ -1,10 +1,16 @@
 const fruits = () => ({
-  apple: {
+  "apple juice": {
     quantity: 3,
   },
-  banana: {
+  "banana juice": {
     quantity: 12,
   },
+  "pineapple juice": {
+    quantity: 12,
+  },
+  "watermelon juice": {
+    quantity: 15
+  }
 });
 
 class Vendor {

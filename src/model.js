@@ -1,7 +1,7 @@
 class Model {
   getProductCardData(name) {
     const heading = name;
-    const imageUrl = `https://www.archanaskitchen.com//images/archanaskitchen/World_Beverages/Mulled_Apple_Juice_Recipe-1.jpg`;
+    const imageUrl = `..\\images\\${name.replaceAll(" ", "_")}.jpeg`;
     return { heading, imageUrl };
   };
 
