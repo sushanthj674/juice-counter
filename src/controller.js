@@ -33,8 +33,12 @@ class Controller {
   };
 
   #generateProductCards(productInventory, cartDetails) {
+    document.querySelector("main").innerHTML = "";
     for (const fruit in productInventory) {
       const details = this.dataHandler.getProductCardData(fruit, productInventory[fruit].quantity);
+      if (productInventory[fruit].quantity < 1) {
+        continue;
+      }
       this.uiManager.generateCard({ ...details }, cartDetails, this.inventoryManager);
     }
   };
@@ -46,8 +50,12 @@ class Controller {
     const confirmOrderButton = document.querySelector("#submit");
     this.#generateProductCards(productInventory, cartDetails);
     confirmOrderButton.onclick = () => this.finalizeOrder(cartDetails);
-    document.querySelector("#reload").onclick = () => {
-      controller.initializeShop();
+    document.querySelector("#reload").onclick = (e) => {
+      const existingCart = document.querySelector(".cart-items");
+      existingCart.innerHTML = '';
+      e.preventDefault();
+      this.initializeShop();
+      this.uiManager.hideAcknowledgment();
     };
   };
 }

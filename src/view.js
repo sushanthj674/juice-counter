@@ -13,6 +13,7 @@ class View {
 
   #renderCart(cartItems) {
     const existingCart = document.querySelector(".cart-items");
+    existingCart.innerHTML = '';
     if (existingCart) {
       existingCart.replaceWith(cartItems);
     } else {
@@ -89,6 +90,10 @@ class View {
 
   };
 
+  hideAcknowledgment() {
+    document.querySelector(".acknowledge").style.display = "none";
+    document.querySelector(".content").style.filter = "blur(0px)";
+  };
   #createHeading(heading) {
     const header = document.createElement("h2");
     header.innerText = heading;
