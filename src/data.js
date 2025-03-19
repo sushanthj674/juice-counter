@@ -1,6 +1,6 @@
 const fruits = () => ({
   "apple juice": {
-    quantity: 10,
+    quantity: 3,
   },
   "banana juice": {
     quantity: 12,
