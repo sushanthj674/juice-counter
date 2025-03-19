@@ -1,52 +1,52 @@
 class Controller {
-  constructor(supplier, customer, view, model) {
-    this.supplier = supplier;
-    this.customer = customer;
-    this.view = view;
-    this.model = model;
+  constructor(inventoryManager, buyer, uiManager, dataHandler) {
+    this.inventoryManager = inventoryManager;
+    this.buyer = buyer;
+    this.uiManager = uiManager;
+    this.dataHandler = dataHandler;
   }
 
-  handOverOrder(orderData) {
-    this.customer.placeOrder(orderData, this.supplier);
-    this.view.showAcknowledgment();
+  finalizeOrder(cartDetails) {
+    this.buyer.placeOrder(cartDetails, this.inventoryManager);
+    this.uiManager.showAcknowledgment();
   };
 
-  increaseQuantity(element, productName, orderData) {
-    if (this.model.isOutOfStock(this.supplier, productName)) {
+  addItemToCart(element, productName, cartDetails) {
+    if (this.dataHandler.isOutOfStock(this.inventoryManager, productName)) {
       return '';
     }
 
-    this.model.addToOrder(this.supplier, productName, orderData, 1);
-    this.view.updateCart(element, orderData, 1);
+    this.dataHandler.addToOrder(this.inventoryManager, productName, cartDetails, 1);
+    this.uiManager.updateCart(element, cartDetails, 1);
     return element;
   };
 
-  decreaseQuantity(element, productName, orderData) {
+  removeItemFromCart(element, productName, cartDetails) {
     if (+element.innerText === 0) {
       return '';
     }
 
-    this.model.removeFromOrder(this.supplier, productName, orderData, 1);
-    this.view.updateCart(element, orderData, -1);
+    this.dataHandler.removeFromOrder(this.inventoryManager, productName, cartDetails, 1);
+    this.uiManager.updateCart(element, cartDetails, -1);
 
     return element;
   };
 
-  #processCard(fruitsList, orderData) {
-    for (const fruit of Object.keys(fruitsList)) {
-      const details = this.model.getProductCardData(fruit, fruitsList[fruit].quantity);
-      this.view.generateCard({ ...details }, orderData, this.supplier);
+  #generateProductCards(productInventory, cartDetails) {
+    for (const fruit in productInventory) {
+      const details = this.dataHandler.getProductCardData(fruit, productInventory[fruit].quantity);
+      this.uiManager.generateCard({ ...details }, cartDetails, this.inventoryManager);
     }
   };
 
-  fruitManagement() {
-    const orderData = {};
-    const fruitsList = this.supplier.inventory;
-    const submitOrder = document.querySelector("#submit");
-    this.#processCard(fruitsList, orderData);
-    submitOrder.onclick = () => this.handOverOrder(orderData);
+  initializeShop() {
+    const cartDetails = {};
+    const productInventory = this.inventoryManager.inventory;
+    const confirmOrderButton = document.querySelector("#submit");
+    this.#generateProductCards(productInventory, cartDetails);
+    confirmOrderButton.onclick = () => this.finalizeOrder(cartDetails);
     document.querySelector("#reload").onclick = () => location.reload();
   };
 }
 const controller = new Controller(new Vendor(fruits()), new Customer("bro"), new View(), new Model());
-globalThis.onload = () => controller.fruitManagement();
+globalThis.onload = () => controller.initializeShop();

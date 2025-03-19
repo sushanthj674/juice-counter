@@ -1,6 +1,6 @@
 class View {
   #createOrderSummary(orderData, cartItems) {
-    for (const name of Object.keys(orderData)) {
+    for (const name in orderData) {
       if (orderData[name] > 0) {
         const itemSummary = document.createElement("p");
         itemSummary.innerText = `${name} : ${orderData[name]}`;
@@ -35,14 +35,14 @@ class View {
   #createIncrementButton(countElement, heading, orderData) {
     const plusButton = document.createElement("button");
     plusButton.innerText = "+";
-    plusButton.onclick = () => controller.increaseQuantity(countElement, heading, orderData);
+    plusButton.onclick = () => controller.addItemToCart(countElement, heading, orderData);
 
     return plusButton;
   };
 
   #createDecrementButton(countElement, heading, orderData) {
     const minusButton = document.createElement("button");
-    minusButton.onclick = () => controller.decreaseQuantity(countElement, heading, orderData);
+    minusButton.onclick = () => controller.removeItemFromCart(countElement, heading, orderData);
     minusButton.innerText = "-";
 
     return minusButton;
