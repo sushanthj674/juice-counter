@@ -33,9 +33,9 @@ class Vendor {
   }
   requestOrder(order) {
     this.#orders.push({ ...order });
-    for (const [itemName, quantity] of Object.entries(order.order)) {
-      this.reduceQuantityOf(itemName, quantity);
-    }
+    // for (const [itemName, quantity] of Object.entries(order.order)) {
+    //   // this.reduceQuantityOf(itemName, quantity);
+    // }
     return true;
   }
   get ordersPlaced() {
