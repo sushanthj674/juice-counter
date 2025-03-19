@@ -40,12 +40,15 @@ class Controller {
   };
 
   initializeShop() {
+    console.log(this.inventoryManager.inventory);
     const cartDetails = {};
     const productInventory = this.inventoryManager.inventory;
     const confirmOrderButton = document.querySelector("#submit");
     this.#generateProductCards(productInventory, cartDetails);
     confirmOrderButton.onclick = () => this.finalizeOrder(cartDetails);
-    document.querySelector("#reload").onclick = () => location.reload();
+    document.querySelector("#reload").onclick = () => {
+      controller.initializeShop();
+    };
   };
 }
 const controller = new Controller(new Vendor(fruits()), new Customer("bro"), new View(), new Model());
