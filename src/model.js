@@ -1,25 +1,25 @@
 class Model {
-  fetchCardDetails(name) {
+  getProductCardData(name) {
     const heading = name;
     const imageUrl = `https://www.archanaskitchen.com//images/archanaskitchen/World_Beverages/Mulled_Apple_Juice_Recipe-1.jpg`;
     return { heading, imageUrl };
   };
 
-  updateQuantity(vendor, fruitName, orderElements, quantity) {
-    if (!orderElements[fruitName]) {
-      orderElements[fruitName] = 0;
+  addToOrder(supplier, productName, cartItems, amount) {
+    if (!cartItems[productName]) {
+      cartItems[productName] = 0;
     }
-    vendor.reduceQuantityOf(fruitName, 1);
-    orderElements[fruitName] += quantity;
+    supplier.reduceQuantityOf(productName, 1);
+    cartItems[productName] += amount;
   };
 
-  incrementQuantity(vendor, fruitName, orderElements, quantity) {
-    vendor.increaseQuantityOf(fruitName, 1);
+  removeFromOrder(supplier, productName, cartItems, amount) {
+    supplier.increaseQuantityOf(productName, 1);
 
-    orderElements[fruitName] -= quantity;
+    cartItems[productName] -= amount;
   };
 
-  canAddMore(vendor, fruitName) {
-    return vendor.inventory[fruitName].quantity < 1;
+  isOutOfStock(supplier, productName) {
+    return supplier.inventory[productName].quantity < 1;
   }
 }

@@ -42,14 +42,14 @@ main {
   width: 2em;
   height: 1.8em;
 }
-.quantityBlock {
+.quantity-container {
   width: 150px;
   border: 0.4px solid rgb(40, 38, 38);
   height: 30px;
   display: flex;
   justify-content: space-evenly;
 }
-.quantityBlock button {
+.quantity-container button {
   align-self: center;
 }
 .acknowledge {
@@ -85,7 +85,7 @@ main {
   height: 3em;
   width: 7em;
 }
-.cart-iteams {
+.cart-items {
   text-transform: capitalize;
   display: flex;
   flex-direction: column;
@@ -93,7 +93,7 @@ main {
 }
 .cart {
   background-color: aliceblue;
-  /* height: 200px; */
+  min-height: 200px;
   width: 20%;
   display: flex;
   gap: 10px;
@@ -101,7 +101,7 @@ main {
   align-items: center;
   justify-content: flex-start;
 }
-.cart-iteams p {
+.cart-items p {
   font-size: 20px;
 }
 #submit {
