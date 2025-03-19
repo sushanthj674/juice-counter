@@ -1,6 +1,6 @@
 const fruits = () => ({
   apple: {
-    quantity: 10,
+    quantity: 3,
   },
   banana: {
     quantity: 12,
